@@ -4,27 +4,16 @@ import './index.css';
 
 function Button(props) {
     return (
-        <button onClick={() => props.onClick}>
+        <button onClick={props.onClick}>
             {props.value}
         </button>
     );
 }
 
 function Buttons(props) {
-    let buttonsRender = [];
-    for (let x = 0; x < props.products.length; x++) {
-        buttonsRender.push(
-            <div key={`button-row-${x}`} className="button-row">
-                <Button
-                    value={props.products[x].name}
-                    onClick={() => props.onClick(x)}
-                />
-            </div>
-        );
-    }
     return (
         <div>
-            {buttonsRender}
+            {props.children}
         </div>
     );
 }
@@ -77,10 +66,9 @@ class Machine extends React.Component {
         return (
             <div className="machine">
                 <div className="machine-buttons">
-                    <Buttons
-                        products={this.state.products}
-                        onClick={i => this.handleClickButton(i)}
-                    />
+                    <Buttons>
+                        {this.state.products.map((data, index) => <Button key={'button-' + index} value={data.name} onClick={() => this.handleClickButton(index)} />)}
+                    </Buttons>
                 </div>
                 <div className="machine-display">
                     <DisplayScreen
