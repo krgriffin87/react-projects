@@ -57,7 +57,7 @@ class Machine extends React.Component {
             //Do stock error
         }
         if (products[i].price > this.state.currentAmt) {
-            //this.setState({message: 'Insert more money.  Cost: ' + products[i].price + '  Amount inserted: ' + this.state.currentAmt});
+            this.setState({message: 'Insert more money.  Cost: ' + products[i].price + '  Amount inserted: ' + this.state.currentAmt});
         }
 
     }
